@@ -1,0 +1,13 @@
+= form_for @world_mode do |f|
+  - if @world_mode.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@world_mode.errors.count, "error")} prohibited this world_mode from being saved:"
+      %ul
+        - @world_mode.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :new
+    = f.text_field :new
+  .actions
+    = f.submit 'Save'

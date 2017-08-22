@@ -1,0 +1,226 @@
+// IGNORE, BUT KEEP THIS LINE (Back button)
+// = render :partial => "application/back_to_root"
+.body
+    .container-toolbar
+        #toolbar
+        #toolbar-text Bill
+    .container
+        .bill-container1
+            %p#bill-message Hello, I'm Bill!
+            %p#bill-message I am your personalized financial helper! How can I help you today?
+            %img#bill-logo1{src: "/logo/bill-2.png", width: "15%"}
+        .user-container1
+            %p#user-message Hey Bill
+            %p#user-message Can you send me a pie chart of my boba spending in the past 2 weeks?
+            %img#user-logo{src: "/logo/person-icon.png", width: "14%"}
+        .bill-container2
+            %img#bill-message{src: "/logo/data.png", width: "40%", height: "40%"}
+            %img#bill-logo{src: "/logo/bill-2.png", width: "15%"}
+        .user-container2
+            %p#user-message2 Thanks fam <3
+            %img#user-logo2{src: "/logo/person-icon.png", width: "58%"}
+    .bottom-container
+        %img#scan-logo{src: "/logo/camera-black.png", width: "10%"}
+        %img#world-logo{src: "/logo/earth-black.png", width: "10%"}
+        %img#tool-logo{src: "/logo/gear.png", width: "10%"}
+        %img#menu-logo{src: "/logo/menu.png", width: "10%"}
+        %input#input1{:placeholder => "I need to...", :type => "text"}
+// .voice
+//    .bg.voicePlay
+// #welcome
+//    %span Hello, I am AI Mode
+
+:scss
+    .container-toolbar{
+    position: absolute;
+    #toolbar{
+        width: 400px;
+        height: 55px;
+        background: LimeGreen;
+        z-index: 70;
+        opacity: 0.8;
+    }
+        #toolbar-text{
+        font-size: 180%;
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        left:175px;
+        z-index:71;
+    }
+    }
+    .bill-container1{
+        display:none;
+        position: absolute;
+        top: 70px;
+        #bill-logo1{
+            position: relative;
+            top: -47px;
+            left: -256px;
+        }
+    }
+    .bill-container2{
+        display:none;
+        position: absolute;
+        top: 320px;
+    }
+    .user-container1{
+        display:none;
+        position: absolute;
+        top: 195px;
+    }
+    .user-container2{
+        display:none;
+        position: absolute;
+        top: 505px;
+        right: 32px;
+        #user-message2{
+        position: relative;
+        right: 40px;
+        margin: 2% 22% 2% 0;
+        background: #36c7f2;
+        text-align: right;
+        max-width: 40%;
+        padding: 8px;
+        border-radius: 8px 8px 0 8px;
+        font-family: 'Open Sans', sans-serif;
+        color: #111;
+        font-size: 13px;
+        display: inline-block;
+        float: right;
+        }
+        #user-logo2{
+        top: -3px;
+        right: -8%;
+        z-index: 80;
+        float: right;      
+        position: absolute;
+        }
+    }
+    html,body {
+        background: #eee;
+    }
+    #input1{
+        font-size: 100%;
+        bottom: 2%;
+        left: 70px;
+        position: absolute;
+        height: 40px;
+        width: 60%;
+        border: 1px solid #ccc;
+        background: url('/logo/microphone.png') no-repeat scroll 100% 7px;
+        background-size: 28px;
+        background-color: #fefefe;
+        padding-left: 10px;
+        padding-right: 5px;
+    }
+    #bill-message{
+        margin: 2% 0 2% 22%;
+        background: #7bea24;
+        max-width: 40%;
+        padding: 8px;
+        border-radius: 8px 8px 8px 0;
+        font-family: 'Open Sans', sans-serif;
+        color: #111;
+        font-size: 13px;
+        display: inline-block;
+    }
+    #user-message{
+        margin: 2% 22% 2% 0;
+        background: #36c7f2;
+        text-align: right;
+        max-width: 40%;
+        padding: 8px;
+        border-radius: 8px 8px 0 8px;
+        font-family: 'Open Sans', sans-serif;
+        color: #111;
+        font-size: 13px;
+        display: inline-block;
+        float: right;
+    }
+    #bill-logo{
+        left: 5%;
+        z-index: 80;     
+        position: absolute;
+    }
+    #user-logo{
+        right: 5%;
+        z-index: 80;
+        float: right;      
+        position: absolute;
+    }
+    #micro-logo{
+        left:317px;
+        bottom: 19px;
+        z-index: 80;
+        position: absolute; 
+        opacity: 0.6;
+    }
+    .bottom-container {
+        background: #fff;
+    }
+    #scan-logo{
+        left:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;
+        opacity: 0.5;
+    }
+    #world-logo{
+        right:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;
+        opacity: 0.5;
+    }
+    #tool-logo{
+        right:15px;
+        top: 15px;
+        z-index: 80;
+        position: absolute;
+    }
+    #menu-logo{
+        left:15px;
+        top: 15px;
+        z-index: 80;
+        position: absolute;
+    }
+    
+    
+:coffeescript
+    $ ->
+        document.getElementById('bill-logo').addEventListener 'click', ->
+            window.location = "agent";
+        document.getElementById('scan-logo').addEventListener 'click', ->
+            window.location = "scan";
+        document.getElementById('world-logo').addEventListener 'click', ->
+            window.location = "/map_anime";
+        connection = new WebSocket('wss://bill-dongjooshin.c9users.io:8081')
+        connection.onmessage = (e) ->
+            console.log e.data
+            try
+                myObj = JSON.parse(e.data)
+                identity_classify = myObj.identity
+            catch err
+                return
+            if identity_classify.includes('next1')
+                $('.bill-container1').css 'display', 'block'
+            else if identity_classify.includes('next2')
+                $('.user-container1').css 'display', 'block'
+            else if identity_classify.includes('next3')
+                $('.bill-container2').css 'display', 'block'
+            else if identity_classify.includes('next4')
+                $('.user-container2').css 'display', 'block'
+            else if identity_classify.includes('clean')
+                $('.bill-container1').css 'display', 'none'
+                $('.bill-container2').css 'display', 'none'
+                $('.user-container1').css 'display', 'none'
+                $('.user-container2').css 'display', 'none'
+            return
+        connection.onopen = () ->
+            connection.send 'Ping'
+            return
+        connection.onerror = (error) ->
+            console.log 'WebSocket Error ' + error
+            return

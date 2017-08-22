@@ -1,0 +1,37 @@
+.container-fluid.np
+    .col-xs-12.col-sm-6.np
+        .panel.panel-primary
+            .panel-heading 
+                %b
+                    Final Project
+                Bill
+            .panel-body
+                %ul.list-group
+                    %li.list-group-item 
+                        = link_to vignette_scan_path do
+                            %b #1
+                            Scan Mode
+                            %span.pull-right.glyphicon.glyphicon-chevron-right
+                    %li.list-group-item 
+                        = link_to vignette_agent_path do
+                            %b #2
+                            AI Agent Mode
+                            %span.pull-right.glyphicon.glyphicon-chevron-right
+                    %li.list-group-item 
+                        = link_to map_anime_path do
+                            %b #3
+                            World Mode
+                            %span.pull-right.glyphicon.glyphicon-chevron-right
+                    %li.list-group-item 
+                        = link_to vignette_controller_path do
+                            %b #4
+                            Wizard-Oz Controller
+                            %span.pull-right.glyphicon.glyphicon-chevron-right
+                    %li.list-group-item 
+                        = link_to vignette_bank_path do
+                            %b #5
+                            Investment Page
+                            %span.pull-right.glyphicon.glyphicon-chevron-right
+            .panel-footer
+                CS160 - Intro to UI Design and Development
+   

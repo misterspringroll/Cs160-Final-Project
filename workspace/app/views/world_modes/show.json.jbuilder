@@ -1,0 +1,1 @@
+json.partial! "world_modes/world_mode", world_mode: @world_mode

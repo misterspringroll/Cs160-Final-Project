@@ -1,0 +1,59 @@
+= stylesheet_link_tag "map"
+
+// IGNORE, BUT KEEP THIS LINE (Back button)   
+= render :partial => "application/back_to_root"
+
+.body
+    %img#bill-logo{src: "/logo/bill-2.png", width: "22%"}
+    %img#scan-logo{src: "/logo/camera-black.png", width: "10%"}
+    %img#world-logo{src: "/logo/earth-black.png", width: "10%"}
+    
+// =button_to "Add Goal",goal_new_path
+%button#button
+    Add Goal
+
+.container
+    .goal#cat-container
+        =image_tag "/logo/cat.png", :id => "cat-img"
+.container
+    .goal#house-container
+        =image_tag "house_2.png", :id => "house-img"
+.container
+    .goal#car-container
+        =image_tag "car_goal.png", :id => "car-img"
+
+:scss
+    #welcome{
+        text-align:center;
+    }
+    #bill-logo{
+        left:15px;
+        top: 15px;
+        z-index: 80;
+        position: absolute;
+        opacity: 0.5;
+    }
+    #scan-logo{
+        left:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;        
+        opacity: 0.5;
+    }
+    #world-logo{
+        right:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;        
+    }
+
+:coffeescript
+    $ ->
+        document.getElementById('bill-logo').addEventListener 'click', ->
+            window.location = "vignette/agent";
+        document.getElementById('scan-logo').addEventListener 'click', ->
+            window.location = "vignette/scan";
+        document.getElementById('world-logo').addEventListener 'click', ->
+            window.location = "map";
+        document.getElementById('button').addEventListener 'click', ->
+            window.location = "goal/details";

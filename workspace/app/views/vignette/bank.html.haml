@@ -1,0 +1,44 @@
+// IGNORE, BUT KEEP THIS LINE (Back button)   
+= render :partial => "application/back_to_root"
+
+.body
+    %img#bill-logo{src: "/logo/bill-2.png", width: "22%"}
+    %img#scan-logo{src: "/logo/camera-black.png", width: "10%"}
+    %img#world-logo{src: "/logo/earth-black.png", width: "10%"}
+    %img#investment{src: "/investment/investment.jpg", width: "90%"}
+
+:scss
+    #bill-logo{
+        left:15px;
+        top: 15px;
+        z-index: 80;
+        position: absolute;
+        opacity: 0.5;
+    }
+    #scan-logo{
+        left:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;        
+        opacity: 0.5;
+    }
+    #world-logo{
+        right:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;        
+    }
+    #investment{
+        position: absolute;
+        right: 22px;
+        top: 110px;
+    }
+
+:coffeescript
+    $ ->
+        document.getElementById('bill-logo').addEventListener 'click', ->
+            window.location = "agent";
+        document.getElementById('scan-logo').addEventListener 'click', ->
+            window.location = "scan";
+        document.getElementById('world-logo').addEventListener 'click', ->
+            window.location = "/map";

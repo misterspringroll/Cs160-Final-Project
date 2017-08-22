@@ -1,0 +1,21 @@
+%h1 Listing world_modes
+
+%table
+  %thead
+    %tr
+      %th New
+      %th
+      %th
+      %th
+
+  %tbody
+    - @world_modes.each do |world_mode|
+      %tr
+        %td= world_mode.new
+        %td= link_to 'Show', world_mode
+        %td= link_to 'Edit', edit_world_mode_path(world_mode)
+        %td= link_to 'Destroy', world_mode, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New World mode', new_world_mode_path

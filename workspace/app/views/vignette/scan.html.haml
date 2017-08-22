@@ -1,0 +1,118 @@
+#instadesktop
+    #webcam-feed.col-xs-12.col-sm-6
+        %span#videospan
+            %video#videoElement{:autoplay => "true"}
+        
+.body
+    %img#bill-logo{src: "/logo/bill-2.png", width: "22%"}
+    %img#scan-logo{src: "/logo/camera-black.png", width: "10%"}
+    %img#world-logo{src: "/logo/earth-black.png", width: "10%"}
+    %img#shoot-logo{src: "/logo/shoot.png", width: "18%"}
+    %img#receipt{src: "/logo/receipt.jpg", width: "100%"}
+    %img#check{src: "/logo/check.png", width: "15%"}
+    %img#redo{src: "/logo/redo.png", width: "18%"}
+
+    
+// IGNORE, BUT KEEP THIS LINE (Back button)   
+// = render :partial => "application/back_to_root"
+
+:scss
+    #receipt{
+        display:none;
+        left:0px;
+        top: 150px;
+        z-index: 80;
+        position: absolute;
+    }
+    #check{
+        display:none;
+        right:0px;
+        top: 500px;
+        z-index: 80;
+        position: absolute;
+    }
+    #redo{
+        display:none;
+        left:0px;
+        top: 500px;
+        z-index: 80;
+        position: absolute;
+    }
+    #bill-logo{
+        left:15px;
+        top: 15px;
+        z-index: 80;
+        position: absolute;
+        opacity: 0.5;
+    }
+    #scan-logo{
+        left:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;        
+    }
+    #world-logo{
+        right:15px;
+        bottom: 15px;
+        z-index: 80;
+        position: absolute;
+        opacity: 0.5;
+    }
+    #shoot-logo{
+        right:164px;
+        bottom: 50px;
+        z-index: 80;
+        position: absolute;
+    }
+    #instadesktop{
+        height: 100%;
+        width: 100%;
+        color: white;
+        font-family: Avenir, sans-serif;
+        font-size: 4em;
+        text-align: center;
+            
+        #webcam-feed{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #videoElement{
+            height: 750px;
+            z-index: -1;
+        }
+    }
+:coffeescript
+    $ ->
+        promise = navigator.mediaDevices.getUserMedia(
+          audio: false
+          video: true).then((stream) ->
+            $('#videoElement').attr('src', window.URL.createObjectURL(stream))
+            return
+        
+        )
+        document.getElementById('bill-logo').addEventListener 'click', ->
+            window.location = "agent";
+        document.getElementById('scan-logo').addEventListener 'click', ->
+            window.location = "scan";
+        document.getElementById('world-logo').addEventListener 'click', ->
+            window.location = "/map_anime";
+        document.getElementById('shoot-logo').addEventListener 'click', ->
+            $('#receipt').css 'display', 'block'
+            $('#check').css 'display', 'block'
+            $('#redo').css 'display', 'block'
+        document.getElementById('check').addEventListener 'click', ->
+            $('#receipt').css 'display', 'none'
+            $('#check').css 'display', 'none'
+            $('#redo').css 'display', 'none'
+        document.getElementById('redo').addEventListener 'click', ->
+            $('#receipt').css 'display', 'none'
+            $('#check').css 'display', 'none'
+            $('#redo').css 'display', 'none'
+            
+        
+
+        
+  

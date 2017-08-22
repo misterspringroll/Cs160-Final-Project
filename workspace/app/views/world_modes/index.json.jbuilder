@@ -1,0 +1,1 @@
+json.array! @world_modes, partial: 'world_modes/world_mode', as: :world_mode

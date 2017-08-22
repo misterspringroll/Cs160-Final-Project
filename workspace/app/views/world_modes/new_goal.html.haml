@@ -1,0 +1,100 @@
+%h1 Add Goal
+
+// = form_tag tags_path(:id => @poem.id), :class => "newtag_form", :multipart => true do
+//     .form-row
+//         .input-group
+//             = label :poem, :title, 'Create Poem Tags'
+//             = autocomplete_field :poem, :tag_list, autocomplete_tag_name_poems_path, 'data-delimiter' => ', ', :multiple => true, :value => ""
+//     %footer.footer
+//         = submit_tag 'Submit Tag(s)', :id => "tag-button", :class=>"button btn white"
+
+= form_tag search_results_path, :method => 'get', :class => "search_box" do
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil, :class => "submit_button"
+    
+.container
+    .img
+        - if params[:search] == "cat"
+            = image_tag("cat_munchkin.jpg", :id => "cat1")
+    
+    .img
+        - if params[:search] == "cat"
+            = image_tag("cat_scottish_fold.jpeg", :id => "cat2")
+    
+    // .img
+    //     = image_tag("cat_munchkin.jpg", :id => "cat1")
+    // .load
+    //     Load More...
+
+
+:css
+    // * {
+    //     padding: 0;
+    //     margin: 0;
+    // }
+    
+    html {
+        // overflow: hidden;
+    }
+    
+    body {
+        background-color: #00BFFF;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+  
+    
+    .search_box {
+        position: relative;
+        text-align:center;
+    }
+    
+    input {
+        background-color: #DBE6FB;
+        // background-color: #00BFFF;
+    }
+
+    h1 {
+        text-align:center;
+        color: white;
+    }
+    
+    .img {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 40px;
+        
+        width: 300px;
+        height: 200px;
+        // background-color: white;
+        color: black;
+    }
+    
+    img {
+        width: 280px;
+        height: auto;
+    }
+    
+    #cat1 {
+        // position: relative;
+        display: block;
+        margin: auto;
+        
+    }
+    
+    #cat2 {
+        // position: relative;
+        display: block;
+        margin: auto;
+        
+    }
+    
+    .load {
+        text-align:center;
+    }
+    
+:coffeescript
+    document.getElementById('add_goal').addEventListener 'click', ->
+        window.location = "/world_modes/new_goal";

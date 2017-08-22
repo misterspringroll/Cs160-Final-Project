@@ -1,0 +1,89 @@
+%h1 Add Goal
+= form_tag search_results_path, :method => 'get', :class => "search_box" do
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil, :class => "submit_button"
+.container
+    .img#cat1
+        - if @query == "cat"
+            = image_tag("cat_munchkin.jpg", :id => "cat1")
+    
+    .img#cat2
+        - if @query == "cat"
+            = image_tag("cat_scottish_fold.jpeg", :id => "cat2")
+    
+    .load
+        Load More...
+
+:css
+    // * {
+    //     padding: 0;
+    //     margin: 0;
+    // }
+    html {
+        // overflow: hidden;
+    }
+    
+    body {
+        background-color: #00BFFF;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+  
+    
+    .search_box {
+        position: relative;
+        text-align:center;
+    }
+    
+    input {
+        background-color: #DBE6FB;
+        // background-color: #00BFFF;
+    }
+
+    h1 {
+        text-align:center;
+        color: white;
+    }
+    
+    .img {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 40px;
+        
+        width: 300px;
+        height: 200px;
+        // background-color: white;
+        color: black;
+    }
+    
+    img {
+        width: 280px;
+        height: auto;
+    }
+    
+    #cat1 {
+        // position: relative;
+        display: block;
+        margin: auto;
+        
+    }
+    
+    #cat2 {
+        // position: relative;
+        display: block;
+        margin: auto;
+        
+    }
+    
+    .load {
+        text-align:center;
+    }
+    
+:coffeescript
+    document.getElementById('cat1').addEventListener 'click', ->
+        window.location = "map_anime2";
+    document.getElementById('cat2').addEventListener 'click', ->
+        window.location = "map_anime2";
+    

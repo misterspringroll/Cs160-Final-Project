@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b New:
+  = @world_mode.new
+
+= link_to 'Edit', edit_world_mode_path(@world_mode)
+\|
+= link_to 'Back', world_modes_path
